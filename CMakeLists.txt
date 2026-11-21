@@ -25,3 +25,9 @@ endif()
 
 add_executable(nexstream-query src/bootstrap/main.cpp)
 target_link_libraries(nexstream-query PRIVATE nexstream_query_core)
+
+if(BUILD_TESTING)
+  add_executable(nexstream_query_tests tests/unit/query_tests.cpp)
+  target_link_libraries(nexstream_query_tests PRIVATE nexstream_query_core)
+  add_test(NAME nexstream_query_tests COMMAND nexstream_query_tests)
+endif()
