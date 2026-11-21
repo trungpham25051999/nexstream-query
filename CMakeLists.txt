@@ -9,7 +9,8 @@ include(CTest)
 find_package(Threads REQUIRED)
 
 add_library(nexstream_query_core
-    src/domain/query_model.cpp)
+    src/domain/query_model.cpp
+    src/application/query_service.cpp)
 target_include_directories(nexstream_query_core PUBLIC include)
 target_link_libraries(nexstream_query_core PUBLIC Threads::Threads)
 target_compile_options(nexstream_query_core PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
