@@ -6,16 +6,22 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 option(NEXSTREAM_ENABLE_SANITIZERS "Enable ASan and UBSan" OFF)
 include(CTest)
+find_package(CURL REQUIRED)
 find_package(Threads REQUIRED)
 
 add_library(nexstream_query_core
     src/domain/query_model.cpp
-    src/application/query_service.cpp)
+    src/application/query_service.cpp
+    src/infrastructure/clickhouse_client.cpp
+    src/infrastructure/http_server.cpp)
 target_include_directories(nexstream_query_core PUBLIC include)
-target_link_libraries(nexstream_query_core PUBLIC Threads::Threads)
+target_link_libraries(nexstream_query_core PUBLIC CURL::libcurl Threads::Threads)
 target_compile_options(nexstream_query_core PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
 
 if(NEXSTREAM_ENABLE_SANITIZERS)
   target_compile_options(nexstream_query_core PUBLIC -fsanitize=address,undefined -fno-omit-frame-pointer)
   target_link_options(nexstream_query_core PUBLIC -fsanitize=address,undefined)
 endif()
+
+add_executable(nexstream-query src/bootstrap/main.cpp)
+target_link_libraries(nexstream-query PRIVATE nexstream_query_core)
