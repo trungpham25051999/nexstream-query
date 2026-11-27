@@ -22,7 +22,7 @@ jobs:
           - { name: Release, type: Release, cxx_flags: "", ld_flags: "" }
           - { name: ASan+UBSan, type: Debug, cxx_flags: "-fsanitize=address,undefined -fno-omit-frame-pointer", ld_flags: "-fsanitize=address,undefined" }
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install dependencies
         run: |
