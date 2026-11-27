@@ -1,5 +1,7 @@
 # nexstream-query
 
+[![CI](https://github.com/trungpham25051999/nexstream-query/actions/workflows/ci.yml/badge.svg)](https://github.com/trungpham25051999/nexstream-query/actions/workflows/ci.yml) ![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus) ![ClickHouse](https://img.shields.io/badge/ClickHouse-HTTP-FFCC01?logo=clickhouse&logoColor=black) [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 C++20 read-only ClickHouse HTTP API, Sprint 07 development implementation.
 
 Build: `cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug && cmake --build build && ctest --test-dir build --output-on-failure`.
